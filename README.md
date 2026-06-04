@@ -44,36 +44,6 @@ npm run dev
 
 ---
 
-## Deploy to Vercel + Neon (Free)
-
-### Step 1 — Create Neon database
-1. Go to [neon.tech](https://neon.tech) → Sign up free
-2. Create a new project → copy the **Connection string**
-3. It looks like: `postgresql://user:pass@ep-xxx.neon.tech/neondb?sslmode=require`
-
-### Step 2 — Push to GitHub
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/study-planner.git
-git push -u origin main
-```
-
-### Step 3 — Deploy on Vercel
-1. Go to [vercel.com](https://vercel.com) → Import your GitHub repo
-2. Add environment variable:
-   - `DATABASE_URL` = your Neon connection string
-3. Click **Deploy**
-
-### Step 4 — Seed the production database
-After deploy, run locally with the Neon URL in your `.env`:
-```bash
-npm run db:seed
-```
-
----
 
 ## Project Structure
 ```
