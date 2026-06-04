@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Phase {
+  id        String    @id @default(cuid())
+  order     Int       @unique
+  title     String
+  month     String
+  color     String    @default("teal")
+  desc      String
+  subjects  Subject[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Subject {
+  id        String   @id @default(cuid())
+  name      String
+  done      Boolean  @default(false)
+  phaseId   String
+  phase     Phase    @relation(fields: [phaseId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TimetableBlock {
+  id        String @id @default(cuid())
+  startTime String
+  endTime   String
+  type      String
+  label     String
+  order     Int
+}
+
+model DailyLog {
+  id        String   @id @default(cuid())
+  date      DateTime @default(now()) @db.Date
+  note      String?
+  mood      Int      @default(3)
+  createdAt DateTime @default(now())
+}
